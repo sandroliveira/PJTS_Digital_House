@@ -8,17 +8,6 @@ public class Boolean {
         }else{
             System.out.println("False");
         }
-
-
-
-
-
-
     }
-
-
-
-
-
 }
 
