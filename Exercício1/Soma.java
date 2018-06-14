@@ -1,4 +1,4 @@
-public class Soma {
+﻿public class Soma {
     public static void main(String[] args) {
         int umNumeroA = 2;
         double umNumeroB = 5;
@@ -11,6 +11,5 @@ public class Soma {
         if (umNumeroA != umNumeroB){
             System.out.printf("A diferença entre umNumeroA e umNumeroB é: %d e %.1f", umNumeroA, umNumeroB);
         }
-
     }
 }
