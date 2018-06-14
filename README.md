@@ -2,4 +2,4 @@
 Exercícios realizados por mim na Digital House
 
 
-(DigitalHouse.gif)
+![](DigitalHouse.gif)
