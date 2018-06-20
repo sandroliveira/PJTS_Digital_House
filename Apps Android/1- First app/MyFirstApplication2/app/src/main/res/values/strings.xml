@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">My First Application 2</string>
-    <string name="button1">change color text</string>
-    <string name="button2">change color background</string>
+    <string name="button1">change text color</string>
+    <string name="button2">change background color</string>
 </resources>
