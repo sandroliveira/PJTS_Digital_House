@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:background="@drawable/new_button"
             android:padding="0dp"
-            android:text="π"
+            android:text="PI"
             android:textSize="25sp" />
 
         <Button
@@ -130,7 +130,6 @@
             android:layout_margin="3dp"
             android:layout_weight="1"
             android:background="@drawable/new_button3"
-            android:text="÷"
             android:textSize="25sp" />
     </LinearLayout>
 
