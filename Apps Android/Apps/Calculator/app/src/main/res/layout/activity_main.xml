@@ -109,7 +109,7 @@
             android:layout_margin="3dp"
             android:layout_weight="1"
             android:background="@drawable/new_button3"
-            android:text="÷"
+            android:text=""
             android:textSize="40sp" />
     </LinearLayout>
 
