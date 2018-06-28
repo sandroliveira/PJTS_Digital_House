@@ -1,22 +1,30 @@
 package com.ag_al.calculator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
+    public final static String TEXT_LOG = "MainActivity";
+    // EXEMPLO DE LOG:  Log.v(TEXT_LOG, "Entrou");
+
     String operation;
     int total;
-    boolean pass = false;
+    boolean pass = false; // USAR O RESULTADO ANTERIOR PARA CALCULAR COM O PRÓXIMO, UTILIZANDO ALGUM OPERADOR.
     StringBuilder arm = new StringBuilder("");
     ArrayList<String> list = new ArrayList<>();
 
@@ -29,6 +37,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Activity activity = MainActivity.this;
         if(getScreenOrientation(activity) == "Landscape"){
             Button exponentten = (Button) findViewById(R.id.exponentTen);
@@ -38,7 +47,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         }
 
         textview = (TextView) findViewById(R.id.textView);
-
 
         Button one = (Button) findViewById(R.id.one);
         one.setOnClickListener(this);
@@ -67,6 +75,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         subtraction.setOnClickListener(this);
         Button multiplicaion = (Button) findViewById(R.id.times);
         multiplicaion.setOnClickListener(this);
+        Button division = (Button) findViewById(R.id.obelus);
+        division.setOnClickListener(this);
 
         Button equal = (Button) findViewById(R.id.equal);
         equal.setOnClickListener(this);
@@ -74,12 +84,33 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         Button clear = (Button) findViewById(R.id.clear);
         clear.setOnClickListener(this);
+        Button back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(this);
+        Button percentage = (Button) findViewById(R.id.percent);
+        percentage.setOnClickListener(this);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == R.id.info){
+            startActivity(new Intent(MainActivity.this, Info_Activity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putString("text", (String) textview.getText());
+        outState.putString("arm", (String) arm.toString());
         super.onSaveInstanceState(outState);
     }
 
@@ -88,11 +119,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         super.onRestoreInstanceState(savedInstanceState);
 
         textview.setText(savedInstanceState.getString("text"));
+        arm.delete(0,arm.length());
+        arm.append(savedInstanceState.getString("arm"));
     }
 
     @Override
     public void onClick(View view) {
-        ;
+
         switch (view.getId()){
 
 //############   NUMBERS   #########################
@@ -184,6 +217,18 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     textview.setText(operation);
                 }
                 break;
+            case R.id.obelus:
+                if(pass == true){
+                    operation = "÷";
+                    list.add(Integer.toString(total));
+                    textview.setText(total+" "+operation);
+                }else {
+                    operation = "÷";
+                    list.add(arm.toString());
+                    arm.delete(0, arm.length());
+                    textview.setText(operation);
+                }
+                break;
 
 
 
@@ -248,6 +293,16 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             operation = null;
                             pass = true;
                             break;
+                        case "÷":
+                            list.add(arm.toString());
+                            total = Integer.parseInt(list.get(0)) / Integer.parseInt(list.get(1));
+                            // equal_w = Integer.parseInt(list.get(1));
+                            textview.setText(Integer.toString(total));
+                            arm.delete(0, arm.length());
+                            list.clear();
+                            operation = null;
+                            pass = true;
+                            break;
 
                     }
                 }
@@ -262,6 +317,38 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 operation = null;
                 pass = false;
                 textview.setText("0");
+                break;
+
+            case R.id.back:
+                try {
+                    if (arm.length() == 1) {
+                        arm.delete(0, arm.length());
+                        textview.setText("0");
+                    } else {
+                        arm.deleteCharAt(arm.length() - 1);
+                        textview.setText(arm);
+                    }
+                }catch (Exception e){
+                    break;
+                }
+                break;
+
+            case R.id.percent:
+                if(operation == "×") {
+                    try {
+                        list.add(arm.toString());
+                        total = Integer.parseInt(list.get(0)) * Integer.parseInt(list.get(1));
+                        textview.setText(Integer.toString(total / 100));
+                        arm.delete(0, arm.length());
+                        list.clear();
+                        operation = null;
+                    } catch (Exception e) {
+                        textview.setText("0");
+                    }
+                }
+                arm.delete(0,arm.length());
+                list.clear();
+                operation = null;
                 break;
 
             case R.id.exponentTen:
