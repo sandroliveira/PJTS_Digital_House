@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ModoDePreparoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textModoDePreparo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas nibh leo, at finibus enim lacinia vitae. Sed porta quis nisi at tempus. Pellentesque et nisl tristique, convallis nisi efficitur, vulputate quam. Donec molestie dapibus lectus, tempus dignissim lectus rutrum ut. Donec sed ipsum quis magna faucibus rhoncus at et odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut arcu mi, scelerisque sed odio sit amet, pharetra interdum massa. Donec sit amet ullamcorper leo. Praesent a iaculis urna, porta pellentesque velit. Donec non sapien eu elit feugiat ullamcorper. Mauris suscipit magna nec facilisis porttitor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse auctor sit amet ipsum eu egestas. In tristique convallis ex vel ullamcorper. Aliquam condimentum ante eget risus congue aliquet. Phasellus varius pellentesque dolor, sed rutrum enim mattis sed."
+        android:textAlignment="viewStart"
+        android:textSize="14sp" />
+
+</FrameLayout>
