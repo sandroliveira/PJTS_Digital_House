@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ExCuriosoLogin</string>
+    <string name="google_status_fmt" formatted="false">%s</string>
+    <string name="firebase_status_fmt" formatted="false">%s</string>
+    <string name="signed_out">saindo</string>
+
+</resources>
